@@ -146,32 +146,7 @@ body.light .bar{ background:#eee; }
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
     }zzz
-/* Estilo del aviso */
-.click-hint {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  color: var(--accent);
-  background: rgba(255, 182, 193, 0.85);
-  padding: 6px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  animation: pulse 1.5s infinite;
-  pointer-events: none; /* No molesta al hacer clic */
-}
-
-/* Animación parpadeante */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-/* Cuando se revela el texto, ocultamos el aviso */
-.real-history-card.unblurred .click-hint {
-  display: none;
-}
+   
     /* ======= CARDS ======= */
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
     .grid{display:grid; gap:14px}
@@ -431,11 +406,7 @@ body:not(.light) .theme-switch{ background: #3a3a52; }
        <div class="section-head">
  <h2 class="real-history-title">Mi historia... REAL</h2>
       </div>
-       <!-- Contenedor relativo para poner el aviso flotante -->
-  <div class="card real-history-card" style="position: relative;">
-    <!-- Aviso flotante -->
-    <span class="click-hint">✨ Haz click aquí para desvelar el texto</span>
-      <div class="card real-history-card">
+<div class="card real-history-card">
         <p>Podría mentir y decir que siempre tuve una increíble pasión por la comunicación, por la publicidad o por la estrategia, pero no es así. </p>
         <p>Todo empezó en una asignatura optativa de segundo de Bachillerato Social en el IES Vermellar de L'Ollería, Valencia, cuyo objetivo era crear una empresa desde cero. En ese proyecto, me encargué de todo tipo de tareas, ya fuera el logo, el DAFO o la creación de un eslogan... Una de esas partes fue la creación de publicidad para nuestro emprendimiento. Esto realmente me cautivó. A pesar de ser una persona creativa con facilidad para el diseño —hice la página web desde cero y creé un plano 3D de la empresa—, la timidez me frenaba a la hora de hablar en público. Aunque también consideré la criminología, la publicidad me llamó con más fuerza.</p>
         <P>Cuando la Universidad de Alicante me aceptó en el Grado de Publicidad y Relaciones Públicas, supe que era el momento de cambiar. No quería que el miedo me impidiera disfrutar la carrera que tanto me gustaba. Por ello, tras mucha práctica y un cambio de mentalidad, ahora soy la primera en levantar la mano para presentar y hablar cuando es necesario, sin miedos ni vergüenza. Hoy, mi motivación actual es usar mi creatividad y comunicación para generar un impacto positivo.</p>
@@ -794,20 +765,8 @@ if (contactForm) {
     const mensaje = document.getElementById('mensaje')?.value || '';
     contactMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
     contactMessage.style.color = 'var(--accent)';
-
-  const title = document.querySelector(".real-history-title");
-  const card = document.querySelector(".real-history-card");
-
-  function revealText() {
-    title.classList.add("unblurred");
-    card.classList.add("unblurred");
-  }
-
-  title.addEventListener("click", revealText);
-  card.addEventListener("click", revealText);
-  });
 }
-
+                               
 // === THEME SWITCHER ===
 const toggleBtn = document.getElementById("theme-toggle");
 const thumbEmoji = document.getElementById("thumb-emoji");
