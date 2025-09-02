@@ -1,300 +1,822 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Portafolio</title>
-<style>
-  :root {
-    --bg: #1a1a1a;
-    --text: #fff;
-    --accent: #ff4081;
-    --blur-bg: rgba(255,255,255,0.1);
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marisa Gaspar — Portafolio</title>
+  <meta name="description" content="Portafolio de Marisa Gaspar — Publicidad y RRPP" />
+ <style>
 
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    transition: background 0.3s, color 0.3s;
-  }
+  /*-- VARIABLES --*/
 
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: var(--bg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    z-index: 1000;
-    border-bottom: 1px solid var(--accent);
-  }
+    :root{
 
-  header nav a {
-    color: var(--text);
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-  }
-
-  header nav a.active {
-    color: var(--accent);
-  }
-
-  .theme-switch {
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
-
-  section {
-    padding: 100px 20px 50px;
-    min-height: 100vh;
-  }
-
-  h1, h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  /* Historia real con blur */
-  .historia-real {
-    background: #333;
-    padding: 40px;
-    border-radius: 15px;
-    margin: 20px auto;
-    max-width: 800px;
-    transition: backdrop-filter 0.3s;
-    backdrop-filter: blur(0px);
-  }
-
-  .historia-real:hover {
-    backdrop-filter: blur(8px);
-  }
-
-  /* Skills */
-  .skill {
-    margin: 15px 0;
-  }
-
-  .skill-bar {
-    width: 100%;
-    background: #444;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .skill-fill {
-    height: 20px;
-    width: 0%;
-    background: var(--accent);
-    border-radius: 10px;
-    transition: width 1s ease-in-out;
-  }
-
-  /* Formulario */
-  form {
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  input, textarea {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-  }
-
-  button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  /* Modal */
-  #modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-  }
-
-  #modal.active {
-    display: flex;
-  }
-
-  #modal-content {
-    background: var(--bg);
-    padding: 30px;
-    border-radius: 15px;
-    color: var(--text);
-    max-width: 600px;
-    text-align: center;
-  }
-
-  #m-close {
-    cursor: pointer;
-    margin-top: 20px;
-    display: inline-block;
-    padding: 10px 20px;
-    background: var(--accent);
-    border-radius: 10px;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    header {
-      flex-direction: column;
+      --bg:#1c1c33;
+      --panel:#21212d;
+      --muted:#888ca3;
+      --line:#232334;
+      --accent:#ffb6c1; 
+      --accent-2:#ffd1dc; 
+      --white:#f5f7fb;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
     }
 
-    header nav a {
-      margin: 5px 0;
+/* ======= MODO CLARO ======= */
+    body.light {
+      --bg:#f9f9fb;
+      --panel:#ffffff;
+      --muted:#555;
+      --line:#ddd;
+      --accent:#ff6f91;
+      --accent-2:#ffb6c1;
+      --white:#222;
+      --shadow: 0 10px 30px rgba(0,0,0,.1);
     }
-  }
 
-</style>
+    body.light header{
+  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
+}
+
+body.light input,
+body.light textarea{
+  background:#fff;
+  color:#222;
+  border-color:#ccc;
+}
+
+body.light .bar{ background:#eee; }
+
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--white); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";}
+
+
+    /* ======= NAVBAR ======= */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,11,15,.85), rgba(11,11,15,.6));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 20px;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent);}
+    .brand small{display:block; color:var(--muted); font-weight:500; letter-spacing:.2px}
+    
+    h1.title{font-size:clamp(36px,8vw,80px);line-height:1.1;text-align:center;color:var(--accent);animation:fadeIn 2s ease forwards;}
+    h1.title span{display:block;color:var(--white);}
+    
+
+    nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:10px; transition:.25s}
+    nav a:hover, nav a.active{color:var(--white); background:rgba(137,255,241,.08)}
+
+    .hamb{display:none; background:none; border:0; color:var(--white); font-size:22px}
+    
+    @media (max-width: 860px){
+      nav{position:fixed; inset:60px 16px auto 16px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px; display:none; box-shadow:var(--shadow)}
+      nav.open{display:block}
+      nav a{display:block}
+      .hamb{display:block}
+    }
+
+/* ======= SECTIONS / LAYOUT ======= */
+    main{max-width:1100px; margin:0 auto; padding:0 20px 60px}
+    section{padding:80px 0; border-bottom:1px dashed rgba(137,255,241,.12)}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:26px}
+    h2{margin:0; font-size: clamp(24px, 3vw, 36px); letter-spacing:.3px}
+    .hint{color:var(--muted); font-size:14px}
+
+    /* ======= HERO ======= */
+    .hero{display:grid; grid-template-columns:1.35fr .9fr; gap:28px; padding:28px; background:linear-gradient(135deg, rgba(137,255,241,.06), rgba(0,0,0,0)); border:1px solid var(--line); border-radius: var(--radius); box-shadow:var(--shadow); margin-top:24px}
+    .hero h1{font-size: clamp(28px, 5vw, 54px); line-height:1.05; margin:.1em 0 .35em}
+    .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(137,255,241,.07)}
+    .tag .led{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent)}
+
+    .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0 22px}
+    .kpi{padding:12px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); text-align:center}
+    .kpi b{font-size:22px}
+
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:6px}
+    .btn{cursor:pointer; border:1px solid var(--accent); color:var(--bg); background:linear-gradient(90deg, var(--accent), var(--accent-2)); padding:12px 16px; border-radius:12px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:8px}
+    .btn.secondary{background:transparent; color:var(--white); border-color:var(--line)}
+    .btn.secondary:hover{border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,255,224,.14) inset}
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .real-history-title {
+      filter: blur(10px);
+      transition: filter 0.3s ease;
+      cursor: pointer;
+}
+
+.real-history-title.unblurred {
+  filter: blur(0);
+  cursor: default;
+}
+
+.real-history-card {
+  filter: blur(5px);
+  transition: filter 0.3 ease;
+  cursor: pointer;
+}
+
+.real-history-card.unblurred {
+  filter: blur(0);
+  cursor: default;
+}
+
+   
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }zzz
+   
+    /* ======= CARDS ======= */
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .grid{display:grid; gap:14px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 860px){
+      .grid.cols-3{grid-template-columns:1fr}
+      .grid.cols-2{grid-template-columns:1fr}
+    }
+
+    /* ======= SKILL BARS ======= */
+    .skill{display:grid; gap:6px}
+    .skill .meta{display:flex; align-items:center; justify-content:space-between; color:var(--muted); font-size:14px}
+    .bar{height:10px; background:#0e0e14; border:1px solid var(--line); border-radius:999px; overflow:hidden; position:relative}
+    .bar>i{display:block; height:100%; width: var(--val, 0%); background: linear-gradient(90deg, rgb(255, 132, 226), rgb(253, 184, 232)); box-shadow:0 0 16px rgba(255, 170, 238, 0.35); transition: width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+    /* ======= TOOL BADGES ======= */
+    .tool{padding:10px 12px; border:1px solid var(--line); border-radius:12px; color:var(--muted); background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)}
+
+    /* ======= CURSOS ADICIONALES ======= */
+
+.card-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.course-card {
+  background: rgba(255,192,203,0.08); /* rosa pastel suave */
+  border: 1px solid rgba(255,192,203,0.3);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(255,182,193,0.3);
+}
+
+.course-card h4 {
+  margin-bottom: 12px;
+  color: var(--white);
+}
+
+.btn.pastel {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(255,182,193,0.8);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn.pastel:hover {
+  background: rgba(255,182,193,1);
+  transform: scale(1.05);
+}
+
+
+    /* ======= PORTFOLIO ======= */
+    .filters{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{border:1px solid var(--line); background:transparent; color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer; transition:.2s}
+    .chip.active, .chip:hover{color:var(--white); border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,255,224,.12) inset}
+
+    .work{position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--line); background:#0f0f15}
+    .work .thumb{aspect-ratio: 16/10; width:100%; background:
+      radial-gradient(120% 120% at 0 0, rgba(137,255,241,.18), transparent 50%),
+      linear-gradient(135deg, #171721, #0d0d14); transition: transform .5s}
+    .work:hover .thumb{transform: scale(1.04)}
+    .work .meta{display:flex; align-items:center; justify-content:space-between; padding:12px; color:var(--muted)}
+
+    /* Modal */
+    dialog{border:none; border-radius:16px; padding:0; background:var(--panel); color:var(--white); width:min(820px, 92vw); box-shadow: var(--shadow)}
+    dialog::backdrop{background: rgba(0,0,0,.6)}
+    .modal-head{display:flex; justify-content:space-between; align-items:center; padding:16px; border-bottom:1px solid var(--line)}
+    .modal-body{padding:16px}
+    .x{background:transparent; border:1px solid var(--line); border-radius:10px; color:var(--muted); padding:6px 10px; cursor:pointer}
+
+/* ======= CONTACT ======= */
+form {display:grid; gap:12px}
+input, textarea {
+  background:#0e0e14;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px 14px;
+  color:var(--white);
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow:0 0 0 4px rgba(0,255,224,.12);
+}
+
+#contacto .card:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* alinea todo el contenido a la izquierda */
+}
+
+.contact-grid {
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:18px;
+}
+@media (max-width: 860px) {
+  .contact-grid {grid-template-columns:1fr}
+}
+
+/* Nuevo estilo para que el textarea no se pueda redimensionar */
+textarea {
+  resize: none;
+}
+
+
+    /* ======= REVEAL ANIMATIONS ======= */
+    .reveal{opacity:0; transform: translateY(16px); transition: .6s cubic-bezier(.2,.8,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+
+        /* ======= FOOTER ======= */
+    footer{padding:30px 20px 60px; color:var(--muted); text-align:center}
+  
+/* === THEME SWITCH (Sun/Moon pill) === */
+.theme-switch {
+  --h: 32px;
+  --w: 76px;
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #3a3a52;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .25s ease, border-color .25s ease;
+  user-select: none;
+}
+
+.theme-switch .thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(var(--h) - 4px);
+  height: calc(var(--h) - 4px);
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;   /* tamaño del emoji dentro */
+  transition: transform .25s cubic-bezier(.2,.8,.2,1);
+}
+
+/* en modo claro, bola a la derecha + emoji sol */
+body.light .theme-switch {
+  background: #2ecc71;
+  border-color: #159a50;
+}
+body.light .theme-switch .thumb {
+  transform: translateX(calc(var(--w) - var(--h)));
+}
+
+
+
+/* optional: soften contrast in dark state */
+body:not(.light) .theme-switch{ background: #3a3a52; }
+
+
+    </style>
 </head>
 <body>
+  <header>
+    <div class="nav">
+      <div class="brand" aria-label="Marisa Gaspar">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          Marisa Gaspar
+          <small>Publicidad & RRPP</small>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button class="hamb">☰</button>
+        <nav>
+          <a href="#inicio" class="active">Inicio</a>
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#habilidades">Habilidades</a>
+          <a href="#portafolio">Portafolio</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+          <button class="theme-switch" id="theme-toggle" aria-label="Cambiar tema" aria-pressed="false">
+            <span class="thumb" id="thumb-emoji">🌙</span>
+          </button>
+      </div>
+    </div>
+  </header>
 
-<header>
-  <div class="logo">Mi Portafolio</div>
-  <nav>
-    <a href="#inicio" class="active">Inicio</a>
-    <a href="#skills">Skills</a>
-    <a href="#historia">Historia Real</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-  <div class="theme-switch" id="themeSwitch">🌙</div>
-</header>
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="reveal">
+          <br>
+          <br>
+          <br>  
+          <br>  
+        <h1 class="title">ESTO, <em>NO</em> ES UN PORTAFOLIO...<span>¿O sí?</span></h1>
+          <br>
+          <br>
+          <br>
+          <br>  
 
-<section id="inicio">
-  <h1>Bienvenida a mi Portafolio</h1>
-  <p style="text-align:center;">Descubre mi trabajo y proyectos</p>
-</section>
+      <div class="hero">
+        <div>
+          <span class="tag"><span class="led" aria-hidden="true"></span> Bienvenidos a todos (contratadme, porfi) <img src="img/Emoji-lloroso.png" width="25" height="25" ;"></span>
+          <h1>¡Es broma! Esto <em>SÍ</em> es un portafolio.<br/> ¡Disfruta! ;)</h1>
+          <p class="hint">Estrategia creativa, contenido y relaciones públicas.</p>
+          <div class="kpis" aria-hidden="true">
+            <div class="kpi"><b>+20</b><div class="hint">piezas creadas</div></div>
+            <div class="kpi"><b>+40</b><div class="hint">proyectos de clase</div></div>
+            <div class="kpi"><b>4º</b><div class="hint">curso de grado</div></div>
+          </div>
+          <div class="cta">
+            <a class="btn" href="#portafolio">Ver trabajos</a>
+            <a class="btn secondary" href="#contacto">Contactar</a>
+          </div>
+        </div>
+            <div class="portrait" aria-label="Retrato / espacio para imagen">
+          <img src="img/yo.jpg" alt="Foto de Marisa Gaspar">
+        </div>
+    </section>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="skill">
-    <p>HTML/CSS</p>
-    <div class="skill-bar"><div class="skill-fill" data-percent="90%"></div></div>
-  </div>
-  <div class="skill">
-    <p>JavaScript</p>
-    <div class="skill-bar"><div class="skill-fill" data-percent="80%"></div></div>
-  </div>
-  <div class="skill">
-    <p>Diseño</p>
-    <div class="skill-bar"><div class="skill-fill" data-percent="70%"></div></div>
-  </div>
-</section>
+    <!-- SOBRE MI -->
+    <section id="sobre-mi" class="reveal">
+      <div class="section-head">
+        <h2>Sobre mí</h2>
+      </div>
+      <div class="card">
+        <p>Estudiante de último curso de Publicidad y RR.PP. en la Universidad de Alicante. Soy una persona organizada y metódica, con gran capacidad para planificar tareas y cumplir plazos.  Destaco por mi facilidad para comunicarme y trabajar en equipo, cualidades que aplico en proyectos creativos y de marketing digital. Me motiva aprender y aportar soluciones innovadoras que generen impacto positivo.</p>
+      </div>
+      <br>
+       <div class="section-head">
+        <h2>Mi historia...</h2>
+      </div>
+      <div class="card">
+        <p>Todo empieza en una aventura originada en Japón, porque sí, fui al país nipón hace un par de años. En una de mis salidas turísticas, cerca de la capital, un anciano desconocido me entregó un cuaderno desgastado. Antes de devolverle aquel obsequio, ya había desaparecido entre la multitud. No le quise dar importancia; al fin y al cabo, un desconocido en una ciudad ajena me entregaba un cuaderno que parecía irrelevante. Decidí que era mejor desecharlo.</p>
+        <p>Pero, justo antes de hacerlo, una de sus hojas se deslizó hasta el suelo. Al recogerla, quedé totalmente impactada. ¿Me creerías si te dijese que el cuaderno era más importante de lo que pensaba? Contenía absolutamente TODAS las estrategias que Nintendo usó en cada una de sus campañas y lanzamientos. Sí, sí, Nintendo. Increíble, ¿verdad? Pero no olvidemos la hoja, por favor, ¿tienes la mínima idea de lo que contenía la hoja que recogí? Bueno, no sé si conocerás al famoso fontanero "Mario Bros."... Si es así, déjame decirte que aquella hoja era la guía maestra para construir un fenómeno global. Revelaba cómo un diseño sencillo se convirtió en un icono, la estrategia detrás de su inconfundible identidad visual y la fórmula para crear experiencias que trascienden generaciones, llenas de alegría y reconocimiento instantáneo. Fue en ese momento cuando mi mente creativa conectó los puntos: no solo se trata de comunicar; se trata de diseñar experiencias memorables que se arraigan en la cultura popular.</p>
+        <p>Por supuesto, el cuaderno y el anciano son tan reales como un unicornio con superpoderes... Lo siento, mi imaginación ha decidido que era un buen momento para demostrar mi habilidad con la escritura... *guiño* *guiño* ;)</p>
+        <p>Ahora sí, enserio, dejando las bromas de lado, os explicaré un poco mi historia.</p>
 
-<section id="historia">
-  <h2>Historia Real</h2>
-  <div class="historia-real">
-    <p>Esta es una sección con contenido destacado que aplica blur al pasar el mouse encima.</p>
-  </div>
-</section>
-
-<section id="contacto">
-  <h2>Contacto</h2>
-  <form id="contactForm">
-    <input type="text" id="asunto" placeholder="Asunto" required>
-    <textarea id="mensaje" placeholder="Mensaje" rows="5" required></textarea>
-    <button type="submit">Enviar</button>
-    <p id="contactMessage"></p>
-  </form>
-</section>
-
-<div id="modal">
-  <div id="modal-content">
-    <p>¡Mensaje enviado correctamente!</p>
-    <div id="m-close">Cerrar</div>
-  </div>
 </div>
+<br>
+       <div class="section-head">
+ <h2 class="real-history-title">Mi historia... REAL</h2>
+      </div>
+<div class="card real-history-card">
+        <p>Podría mentir y decir que siempre tuve una increíble pasión por la comunicación, por la publicidad o por la estrategia, pero no es así. </p>
+        <p>Todo empezó en una asignatura optativa de segundo de Bachillerato Social en el IES Vermellar de L'Ollería, Valencia, cuyo objetivo era crear una empresa desde cero. En ese proyecto, me encargué de todo tipo de tareas, ya fuera el logo, el DAFO o la creación de un eslogan... Una de esas partes fue la creación de publicidad para nuestro emprendimiento. Esto realmente me cautivó. A pesar de ser una persona creativa con facilidad para el diseño —hice la página web desde cero y creé un plano 3D de la empresa—, la timidez me frenaba a la hora de hablar en público. Aunque también consideré la criminología, la publicidad me llamó con más fuerza.</p>
+        <P>Cuando la Universidad de Alicante me aceptó en el Grado de Publicidad y Relaciones Públicas, supe que era el momento de cambiar. No quería que el miedo me impidiera disfrutar la carrera que tanto me gustaba. Por ello, tras mucha práctica y un cambio de mentalidad, ahora soy la primera en levantar la mano para presentar y hablar cuando es necesario, sin miedos ni vergüenza. Hoy, mi motivación actual es usar mi creatividad y comunicación para generar un impacto positivo.</p>
+      </div>
+      <br>
+       <div class="section-head">
+   <h2>Mi misión y objetivos</h2>
+      </div>
+      <div class="card">
+        <p>Mi misión es fusionar la creatividad del diseño con la estrategia de la comunicación para dar vida a ideas que resuenen. Busco no solo vender, sino conectar, y no solo informar, sino inspirar. Me entusiasma descifrar los <em>insights</em> del público para convertirlos en campañas y proyectos que, como en mi propia historia, ayuden a las personas a encontrar su voz. Mi objetivo es trabajar en un entorno donde pueda seguir aprendiendo y aplicando mi pasión por la comunicación y las relaciones públicas para crear contenido que realmente marque la diferencia.</p>
 
-<script>
-  // Tema claro/oscuro
-  const themeSwitch = document.getElementById('themeSwitch');
-  themeSwitch.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    if(document.body.classList.contains('light')){
-      document.documentElement.style.setProperty('--bg','#fff');
-      document.documentElement.style.setProperty('--text','#1a1a1a');
-      document.documentElement.style.setProperty('--accent','#ff4081');
-      themeSwitch.textContent = '☀️';
-    } else {
-      document.documentElement.style.setProperty('--bg','#1a1a1a');
-      document.documentElement.style.setProperty('--text','#fff');
-      document.documentElement.style.setProperty('--accent','#ff4081');
-      themeSwitch.textContent = '🌙';
-    }
-  });
+    </section>
+      
+<!-- HABILIDADES / IDIOMAS / HERRAMIENTAS + RR.SS. -->
+<section id="habilidades">
+  <div class="grid cols-2">
+    <div class="card">
+      <h3>Habilidades</h3>
+      <div class="skill" data-val="92"><div class="meta"><span>Creatividad</span><span>92%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="98"><div class="meta"><span>Comunicación</span><span>98%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="95"><div class="meta"><span>Creación de contenido</span><span>95%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="100"><div class="meta"><span>Organización</span><span>100%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="93"><div class="meta"><span>Aprendizaje rápido</span><span>93%</span></div><div class="bar"><i></i></div></div>
+    </div>
+    <div class="card">
+      <h3>Idiomas</h3>
+      <div class="skill" data-val="100"><div class="meta"><span>Español</span><span>Nativo</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="100"><div class="meta"><span>Valenciano</span><span>Avanzado</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="75"><div class="meta"><span>Inglés</span><span>Intermedio</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="20"><div class="meta"><span>Francés</span><span>Básico</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="100"><div class="meta"><span>Portugués</span><span>Nativo</span></div><div class="bar"><i></i></div></div>
+    </div>
+    <div class="card">
+      <h3>Herramientas</h3>
+      <div class="skill" data-val="100"><div class="meta"><span>Canva</span><span>100%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="70"><div class="meta"><span>InDesign</span><span>70%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="80"><div class="meta"><span>CapCut</span><span>80%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="85"><div class="meta"><span>Powerpoint</span><span>85%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="40"><div class="meta"><span>Excel</span><span>40%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="100"><div class="meta"><span>Word</span><span>100%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="80"><div class="meta"><span>Wix</span><span>80%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="30"><div class="meta"><span>WordPress</span><span>30%</span></div><div class="bar"><i></i></div></div>
 
-  // Scroll activo
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('header nav a');
+    </div>
+    <div class="card">
+      <h3>Redes Sociales</h3>
+      <div class="skill" data-val="95"><div class="meta"><span>Instagram</span><span>95%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="75"><div class="meta"><span>TikTok</span><span>75%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="80"><div class="meta"><span>Facebook</span><span>80%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="85"><div class="meta"><span>Threads</span><span>85%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="95"><div class="meta"><span>X</span><span>95%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="97"><div class="meta"><span>Whatsapp</span><span>97%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="90"><div class="meta"><span>Youtube</span><span>90%</span></div><div class="bar"><i></i></div></div>
+      <div class="skill" data-val="85"><div class="meta"><span>Telegram</span><span>85%</span></div><div class="bar"><i></i></div></div>
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 150;
-      if(scrollY >= sectionTop){
-        current = section.getAttribute('id');
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if(link.getAttribute('href') === '#' + current){
-        link.classList.add('active');
-      }
-    });
-  });
+    </div>
+  </div>
+</section>
 
-  // Skills animación
-  const skillFills = document.querySelectorAll('.skill-fill');
-  window.addEventListener('load', () => {
-    skillFills.forEach(skill => {
-      skill.style.width = skill.dataset.percent;
-    });
-  });
+<!-- CURSOS ADICIONALES -->
+<section id="cursos" class="reveal">
+  <div class="section-head">
+    <h2>Cursos adicionales relevantes</h2>
+  </div>
 
-  // Formulario con modal
-  const contactForm = document.getElementById('contactForm');
-  const contactMessage = document.getElementById('contactMessage');
-  const modal = document.getElementById('modal');
-  const modalClose = document.getElementById('m-close');
+  <div class="card-grid">
+    <div class="course-card">
+      <h4>📌 Inglés de negocios 1</h4>
+      <a href="Cursos/Inglés-de-negocios-1.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
 
-  if(contactForm){
-    contactForm.addEventListener('submit', function(event){
-      event.preventDefault();
-      contactMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
-      contactMessage.style.color = 'var(--accent)';
-      modal.classList.add('active');
-    });
+    <div class="course-card">
+      <h4>📌 Google: Inteligencia artificial y productividad</h4>
+      <a href="Cursos/Google-Inteligencia-Artificial-y-productividad.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Pensamiento estratégico y mentalidad estratégica</h4>
+      <a href="Cursos/Pensamiento-estratégico-y-mentalidad-estratégica.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Storytelling en el marketing digital</h4>
+      <a href="Cursos/Storytelling-en-el-Marketing-Digital.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Colaboración y comunicación estratégica</h4>
+      <a href="Cursos/Colaboración-y-Comunicación-Estratégica.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Python básico</h4>
+      <a href="Cursos/Python.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Negociación</h4>
+      <a href="Cursos/Negociación.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+
+    <div class="course-card">
+      <h4>📌 Prompting responsable: maximiza la IA en tu negocio</h4>
+      <a href="Cursos/Prompting-responsable-maximiza-la-IA-en-tu-negocio.pdf" target="_blank" class="btn pastel">Ver certificado</a>
+    </div>
+  </div>
+</section>
+
+   <!-- EXPERIENCIA LABORAL -->
+<section id="experiencia" class="reveal">
+  <div class="section-head">
+    <h2>Experiencia laboral</h2>
+  </div>
+  <div class="card">
+    <ul style="list-style:none; padding:0; margin:0; line-height:1.6;">
+      <li>💼 Embajadora de The One, Sant Vicent del Raspeig </li>
+      <li>💼 Responsable de marketing y RR.PP en Conecters Series</li>
+      <li>💼 Diseño y creación de contenido en Club Voleibol de L'Ollería AVM</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+/* Responsive para sección de formación y experiencia */
+@media (max-width: 768px) {
+  #formacion .grid {
+    grid-template-columns: 1fr !important;
+  }
+  #formacion .grid > .card {
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+
+<style>
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  /* Cambiar a una sola columna en móviles */
+  #habilidades .grid {
+    grid-template-columns: 1fr !important;
   }
 
-  if(modalClose){
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+  /* Espaciado entre las tarjetas */
+  #habilidades .grid > .card {
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+
+  <!-- PORTAFOLIO -->
+<section id="portafolio" class="reveal">
+  <div class="section-head">
+    <h2>Portafolio</h2>
+    <div class="filters" role="tablist" aria-label="Filtros de trabajos">
+      <button class="chip active" data-filter="all" role="tab" aria-selected="true">Todo</button>
+      <button class="chip" data-filter="ads" role="tab">Publicidad</button>
+      <button class="chip" data-filter="rrpp" role="tab">RRPP</button>
+      <button class="chip" data-filter="university" role="tab">Universidad</button>
+    </div>
+  </div>
+
+  <div class="grid cols-3" id="works">
+
+    <!-- Item 1 - Publicidad - AVMO -->
+    <article class="work" data-cat="ads">
+      <a href="Docs/AVM.pdf" target="_blank" 
+          data-title="Post instagram AVM Olleria" 
+          data-desc="Post en el que invita a la gente a unirse a nuestro club" 
+          aria-label="Abrir trabajo 1">
+        <div class="thumb" style="background-image:url('img/AVMO.jpg'); background-size:cover; filter:blur(0px);"></div>
+        <div class="meta"><span>L'Olleria Voleibol  — AVM</span><span>Publicidad</span></div>
+      </a>
+    </article>
+
+    <!-- Item 2 - RRPP - Folder-->
+    <article class="work" data-cat="rrpp">
+      <a href="Docs/Conecters-series.pdf" target="_blank" 
+        data-title="Folder - Conecters Series" 
+        data-desc="Diseño de folder informativo." 
+        aria-label="Abrir trabajo 2">
+        <div class="thumb" style="background-image:url('img/Conecters-Series.jpg'); background-size:cover; filter:blur(0px);"></div>
+        <div class="meta"><span>Folder - Conecters Series</span><span>RRPP</span></div>
+      </a>
+    </article>
+
+    <!-- Item 3 - UNIVERSIDAD - LA LLUNA -->
+    <article class="work" data-cat="university">
+      <a href="Docs/LA-LLUNA.pdf" target="_blank" 
+        data-title="La Lluna - Generalitat Valenciana" 
+        data-desc="Diseño de piezas gráficas y publicaciones en redes sociales.Asignatura: Estrategia creativa y conceptualización" 
+        aria-label="Abrir trabajo 3">
+        <div class="thumb" style="background-image:url('img/La-Lluna.jpg'); background-size:cover; filter:blur(0px);"></div>
+        <div class="meta"><span>La Lluna - Generalitat Valenciana</span><span>Universidad</span></div>
+      </a>
+    </article>
+
+    <!-- Item 4 - UNIVERSIDAD - UBER EATS-->
+    <article class="work" data-cat="university">
+      <a href="Docs/UBER-EATS.pdf" target="_blank" 
+        data-title="Estrategia Creativa - Uber Eats" 
+        data-desc="Diseño de anuncios y app de Uber Eats. Asignatura: Estrategia creativa y conceptualización" 
+        aria-label="Abrir trabajo 4">
+        <div class="thumb" style="background-image:url('img/Uber-Eats.jpg'); background-size:cover; filter:blur(0px);"></div>
+        <div class="meta"><span>Estrategia Creativa - Uber Eats</span><span>Universidad</span></div>
+      </a>
+    </article>
+  </div>
+</section>
+
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="reveal">
+  <div class="section-head">
+    <h2>Contacto</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="card">
+      <h3>Hablemos</h3>
+      <p><strong>Email:</strong> <a href="mailto:marisa.gasparfig@gmail.com" style="color:var(--accent)">marisa.gasparfig@gmail.com</a></p>
+      <p><strong>Linkedin:</strong> <a href="https://www.linkedin.com/in/marisa-gaspar-figueiredo" style="color:var(--accent)">Marisa Gaspar</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/_maariiisaa_" target="_blank" rel="noopener" style="color:var(--accent)">@_maariiisaa_</a></p>
+      <p><strong>Teléfono:</strong> <a href="tel:+34687319530" style="color:var(--accent)">+34 687 31 95 30</a></p>
+      <p class="hint">Disponibilidad para prácticas.</p>
+    </div>
+    <div class="card">
+      <h3>Envíame un mensaje</h3>
+      <p class="hint">Para cualquier consulta, propuesta de trabajo o simplemente para saludar, puedes rellenar el siguiente formulario. ¡Te responderé lo antes posible!</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeK64kQkHbRbYF_cLcVwVLKjZw1pgGFN-czrK7sCamPOGzqBw/viewform?embedded=true" target="_blank" rel="noopener" class="btn" style="margin-top: 15px;">Rellena el formulario</a>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Marisa Gaspar · Diseño y código propios<br>
+    👀 Este portafolio ha sido visitado <span id="visit-counter">–</span> veces.
+  </footer>
+
+  <script>
+    // ======= Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ======= Menú móvil
+    const hamb = document.querySelector('.hamb');
+    const nav = document.querySelector('header nav');
+    hamb.addEventListener('click',()=> nav.classList.toggle('open'));
+
+    // Cerrar al pulsar link
+    nav.querySelectorAll('a').forEach(a=> a.addEventListener('click',()=> nav.classList.remove('open')));
+
+    // ======= Scroll suave + active link
+    const links = document.querySelectorAll('header nav a');
+    links.forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        if(a.hash){
+          e.preventDefault();
+          document.querySelector(a.hash).scrollIntoView({behavior:'smooth', block:'start'});
+          history.replaceState(null, '', a.hash);
+        }
+      });
+    });
+
+    const sections = Array.from(document.querySelectorAll('main section'));
+    const activateOnScroll = () => {
+      let fromTop = window.scrollY + 80;
+      let current = sections.findLast(sec => sec.offsetTop <= fromTop);
+      links.forEach(l=> l.classList.remove('active'));
+      if(current){
+        const link = document.querySelector(`header nav a[href="#${current.id}"]`);
+        if(link) link.classList.add('active');
+      }
+    };
+    window.addEventListener('scroll', activateOnScroll);
+    activateOnScroll();
+
+    // ======= Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      })
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // ======= Skill bars animate when visible
+    const ioBars = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.querySelectorAll('.bar>i').forEach(i=>{
+            const wrap = i.closest('.skill');
+            const val = wrap?.dataset.val || '0';
+            i.style.setProperty('--val', val+"%");
+          });
+          ioBars.unobserve(e.target);
+        }
+      })
+    }, {threshold:.25});
+    document.querySelectorAll('#habilidades .card').forEach(c=> ioBars.observe(c));
+
+    // ======= Portfolio filters
+    const chips = document.querySelectorAll('.chip');
+    const works = document.querySelectorAll('#works .work');
+    chips.forEach(ch => ch.addEventListener('click', ()=>{
+      chips.forEach(c=> c.classList.remove('active'));
+      ch.classList.add('active');
+      const f = ch.dataset.filter;
+      works.forEach(w=>{
+        w.style.display = (f==='all' || w.dataset.cat === f) ? '' : 'none';
+      });
+    }));
+
+    // ======= Modal básico para proyectos
+    const modal = document.getElementById('modal');
+    const mTitle = document.getElementById('m-title');
+    const mDesc  = document.getElementById('m-desc');
+    const mLink  = document.getElementById('m-link');
+    document.querySelectorAll('.open').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        mTitle.textContent = a.dataset.title || 'Proyecto';
+        mDesc.textContent  = a.dataset.desc  || '';
+        mLink.href = a.href || '#';
+        if(typeof modal.showModal === 'function') modal.showModal();
+        else modal.setAttribute('open','');
+      });
+    });
+    document.getElementById('m-close').addEventListener('click', ()=> modal.close());
+
+// ======= Script para el efecto de difuminado
+  const realHistoryTitle = document.querySelector('.real-history-title');
+  const realHistoryCard = document.querySelector('.real-history-card');
+
+// Función para manejar el clic
+  const handleRealHistoryClick = () => {
+  realHistoryTitle.classList.add('unblurred');
+  realHistoryCard.classList.add('unblurred');
+      
+// Opcional: Remover el event listener para que solo se pueda "desdifuminar" una vez
+  realHistoryTitle.removeEventListener('click', handleRealHistoryClick);
+  realHistoryCard.removeEventListener('click', handleRealHistoryClick);
+    };
+
+// Agregar el event listener al título y al contenido
+  realHistoryTitle.addEventListener('click', handleRealHistoryClick);
+  realHistoryCard.addEventListener('click', handleRealHistoryClick);
+
+// Envío de formulario AJAX con JavaScript (solo si existe el form)
+const contactForm = document.getElementById('contact-form');
+const contactMessage = document.getElementById('contact-message');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const asunto  = document.getElementById('asunto')?.value || '';
+    const mensaje = document.getElementById('mensaje')?.value || '';
+    contactMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
+    contactMessage.style.color = 'var(--accent)';
+}
+                               
+// === THEME SWITCHER ===
+const toggleBtn = document.getElementById("theme-toggle");
+const thumbEmoji = document.getElementById("thumb-emoji");
+
+const applyThemeUI = () => {
+  const isLight = document.body.classList.contains("light");
+  thumbEmoji.textContent = isLight ? "🌞" : "🌙";
+  toggleBtn.setAttribute("aria-pressed", isLight ? "true" : "false");
+};
+
+if (toggleBtn) {
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "light") document.body.classList.add("light");
+  applyThemeUI();
+
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+    applyThemeUI();
+  });
+}
+
+// === VISIT COUNTER (global via CountAPI, with fallback) ===
+(function(){
+  const el = document.getElementById("visit-counter");
+  if(!el) return;
+  const NS = "marisa-gaspar-portfolio";
+  const KEY = "visitas";
+
+  function setVal(v){
+    try { el.textContent = Number(v).toLocaleString('es-ES'); }
+    catch(_) { el.textContent = v; }
   }
 
+  fetch(`https://api.countapi.xyz/hit/${encodeURIComponent(NS)}/${encodeURIComponent(KEY)}`, {mode:'cors'})
+    .then(r => r.json())
+    .then(d => setVal(d.value))
+    .catch(async () => {
+      try{
+        await fetch(`https://api.countapi.xyz/create?namespace=${encodeURIComponent(NS)}&key=${encodeURIComponent(KEY)}&value=0`, {mode:'cors'});
+        const r2 = await fetch(`https://api.countapi.xyz/hit/${encodeURIComponent(NS)}/${encodeURIComponent(KEY)}`, {mode:'cors'});
+        const d2 = await r2.json();
+        setVal(d2.value);
+      }catch(e){
+        let v = Number(localStorage.getItem("visits") || 0) + 1;
+        localStorage.setItem("visits", v);
+        setVal(v);
+      }
+    });
+})();
 </script>
-
 </body>
 </html>
