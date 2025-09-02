@@ -142,11 +142,10 @@ body.light .bar{ background:#eee; }
   cursor: default;
 }
 
-   
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
-    }zzz
-   
+    }
+
     /* ======= CARDS ======= */
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
     .grid{display:grid; gap:14px}
@@ -406,7 +405,7 @@ body:not(.light) .theme-switch{ background: #3a3a52; }
        <div class="section-head">
  <h2 class="real-history-title">Mi historia... REAL</h2>
       </div>
-<div class="card real-history-card">
+      <div class="card real-history-card">
         <p>Podría mentir y decir que siempre tuve una increíble pasión por la comunicación, por la publicidad o por la estrategia, pero no es así. </p>
         <p>Todo empezó en una asignatura optativa de segundo de Bachillerato Social en el IES Vermellar de L'Ollería, Valencia, cuyo objetivo era crear una empresa desde cero. En ese proyecto, me encargué de todo tipo de tareas, ya fuera el logo, el DAFO o la creación de un eslogan... Una de esas partes fue la creación de publicidad para nuestro emprendimiento. Esto realmente me cautivó. A pesar de ser una persona creativa con facilidad para el diseño —hice la página web desde cero y creé un plano 3D de la empresa—, la timidez me frenaba a la hora de hablar en público. Aunque también consideré la criminología, la publicidad me llamó con más fuerza.</p>
         <P>Cuando la Universidad de Alicante me aceptó en el Grado de Publicidad y Relaciones Públicas, supe que era el momento de cambiar. No quería que el miedo me impidiera disfrutar la carrera que tanto me gustaba. Por ello, tras mucha práctica y un cambio de mentalidad, ahora soy la primera en levantar la mano para presentar y hablar cuando es necesario, sin miedos ni vergüenza. Hoy, mi motivación actual es usar mi creatividad y comunicación para generar un impacto positivo.</p>
@@ -558,66 +557,83 @@ body:not(.light) .theme-switch{ background: #3a3a52; }
 </style>
 
 
-  <!-- PORTAFOLIO -->
-<section id="portafolio" class="reveal">
-  <div class="section-head">
-    <h2>Portafolio</h2>
-    <div class="filters" role="tablist" aria-label="Filtros de trabajos">
-      <button class="chip active" data-filter="all" role="tab" aria-selected="true">Todo</button>
-      <button class="chip" data-filter="ads" role="tab">Publicidad</button>
-      <button class="chip" data-filter="rrpp" role="tab">RRPP</button>
-      <button class="chip" data-filter="university" role="tab">Universidad</button>
-    </div>
-  </div>
+    <!-- PORTAFOLIO -->
+    <section id="portafolio" class="reveal">
+      <div class="section-head">
+        <h2>Portafolio</h2>
+        <div class="filters" role="tablist" aria-label="Filtros de trabajos">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">Todo</button>
+          <button class="chip" data-filter="ads" role="tab">Publicidad</button>
+          <button class="chip" data-filter="rrpp" role="tab">RRPP</button>
+          <button class="chip" data-filter="university" role="tab">Universidad</button>
+        </div>
+      </div>
 
-  <div class="grid cols-3" id="works">
+      <div class="grid cols-3" id="works">
 
-    <!-- Item 1 - Publicidad - AVMO -->
-    <article class="work" data-cat="ads">
-      <a href="Docs/AVM.pdf" target="_blank" 
-          data-title="Post instagram AVM Olleria" 
-          data-desc="Post en el que invita a la gente a unirse a nuestro club" 
-          aria-label="Abrir trabajo 1">
-        <div class="thumb" style="background-image:url('img/AVMO.jpg'); background-size:cover; filter:blur(0px);"></div>
-        <div class="meta"><span>L'Olleria Voleibol  — AVM</span><span>Publicidad</span></div>
-      </a>
-    </article>
+        <!-- Item 1 - Publicidad - AVMO -->
 
-    <!-- Item 2 - RRPP - Folder-->
-    <article class="work" data-cat="rrpp">
-      <a href="Docs/Conecters-series.pdf" target="_blank" 
-        data-title="Folder - Conecters Series" 
-        data-desc="Diseño de folder informativo." 
-        aria-label="Abrir trabajo 2">
-        <div class="thumb" style="background-image:url('img/Conecters-Series.jpg'); background-size:cover; filter:blur(0px);"></div>
-        <div class="meta"><span>Folder - Conecters Series</span><span>RRPP</span></div>
-      </a>
-    </article>
+        <article class="work" data-cat="ads">
+          <a href="Docs/AVM.pdf" class="open" 
+              data-title="Post instagram AVM Olleria" 
+              data-desc="Post en el que invita a la gente a unirse a nuestro club" 
+              aria-label="Abrir trabajo 1">
+            <div class="thumb" style="background-image:url('img/AVMO.jpg'); background-size:cover; filter:blur(0px);"></div>
+            <div class="meta"><span>L'Olleria Voleibol  — AVM</span><span>Publicidad</span></div>
+          </a>
+        </article>
 
-    <!-- Item 3 - UNIVERSIDAD - LA LLUNA -->
-    <article class="work" data-cat="university">
-      <a href="Docs/LA-LLUNA.pdf" target="_blank" 
-        data-title="La Lluna - Generalitat Valenciana" 
-        data-desc="Diseño de piezas gráficas y publicaciones en redes sociales.Asignatura: Estrategia creativa y conceptualización" 
-        aria-label="Abrir trabajo 3">
-        <div class="thumb" style="background-image:url('img/La-Lluna.jpg'); background-size:cover; filter:blur(0px);"></div>
-        <div class="meta"><span>La Lluna - Generalitat Valenciana</span><span>Universidad</span></div>
-      </a>
-    </article>
+        <!-- Item 2 - RRPP - Folder-->
 
-    <!-- Item 4 - UNIVERSIDAD - UBER EATS-->
-    <article class="work" data-cat="university">
-      <a href="Docs/UBER-EATS.pdf" target="_blank" 
-        data-title="Estrategia Creativa - Uber Eats" 
-        data-desc="Diseño de anuncios y app de Uber Eats. Asignatura: Estrategia creativa y conceptualización" 
-        aria-label="Abrir trabajo 4">
-        <div class="thumb" style="background-image:url('img/Uber-Eats.jpg'); background-size:cover; filter:blur(0px);"></div>
-        <div class="meta"><span>Estrategia Creativa - Uber Eats</span><span>Universidad</span></div>
-      </a>
-    </article>
-  </div>
-</section>
+        <article class="work" data-cat="rrpp">
+          <a href="Docs/Conecters-series.pdf" class="open" 
+            data-title="Folder - Conecters Series" 
+            data-desc="Diseño de folder informativo." 
+            aria-label="Abrir trabajo 2">
+            <div class="thumb" style="background-image:url('img/Conecters-Series.jpg'); background-size:cover; filter:blur(0px);"></div>
+            <div class="meta"><span>Folder - Conecters Series</span><span>RRPP</span></div>
+          </a>
+        </article>
 
+        <!-- Item 3 - UNIVERSIDAD - LA LLUNA -->
+
+        <article class="work" data-cat="university">
+          <a href="Docs/La-Lluna.pdf" class="open" 
+            data-title="La Lluna - Generalitat Valenciana" 
+            data-desc="Diseño de piezas gráficas y publicaciones en redes sociales.Asignatura: Estrategia creativa y conceptualización" 
+            aria-label="Abrir trabajo 3">
+            <div class="thumb" style="background-image:url('img/La-Lluna.jpg'); background-size:cover; filter:blur(0px);"></div>
+            <div class="meta"><span>La Lluna - Generalitat Valenciana</span><span>Universidad</span></div>
+          </a>
+        </article>
+
+        <!-- Item 4 - UNIVERSIDAD - UBER EATS-->
+
+        <article class="work" data-cat="university">
+          <a href="Docs/Uber-Eats.pdf" class="open" 
+            data-title="Estrategia Creativa - Uber Eats" 
+            data-desc="Diseño de anuncios y app de Uber Eats. Asignatura: Estrategia creativa y conceptualización" 
+            aria-label="Abrir trabajo 4">
+            <div class="thumb" style="background-image:url('img/Uber-Eats.jpg'); background-size:cover; filter:blur(0px);"></div>
+            <div class="meta"><span>Estrategia Creativa - Uber Eats</span><span>Universidad</span></div>
+          </a>
+        </article>
+      </div>
+      <dialog id="modal">
+        <div class="modal-head">
+          <h3 id="m-title">Título del proyecto</h3>
+          <button class="x" id="m-close" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div id="m-media" class="thumb" style="border-radius:12px"></div>
+          <p id="m-desc" class="hint" style="margin-top:12px">Descripción del proyecto.</p>
+          <div class="cta" style="margin-top:12px">
+            <a class="btn" id="m-link" href="#" target="_blank" rel="noopener">Abrir documento</a>
+            <a class="btn secondary" href="https://forms.gle/s8jggPqpbCaKeUjs7">Pedir más info</a>
+          </div>
+        </div>
+      </dialog>
+    </section>
 
     <!-- CONTACTO -->
     <section id="contacto" class="reveal">
@@ -765,8 +781,9 @@ if (contactForm) {
     const mensaje = document.getElementById('mensaje')?.value || '';
     contactMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
     contactMessage.style.color = 'var(--accent)';
+  });
 }
-                               
+
 // === THEME SWITCHER ===
 const toggleBtn = document.getElementById("theme-toggle");
 const thumbEmoji = document.getElementById("thumb-emoji");
